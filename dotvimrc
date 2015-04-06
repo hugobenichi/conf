@@ -1,0 +1,173 @@
+" general settings -------------------------------------------------------------
+
+filetype plugin on
+filetype indent on
+syntax enable
+syntax on
+
+set background=dark
+colorscheme darkblue
+
+" no swap files
+set noswapfile
+
+" ctags settings for java/scala autocompletion
+"set tags=tags;/
+
+" java ctags settings
+autocmd FileType java set tags=.tags
+
+" set search path to current directory at start time
+set path=$PWD/**
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" view settings --------------------------------------------------------
+
+set number          " show line number
+set ruler           " show column number
+set hlsearch        " highlight search
+set colorcolumn=81  " showing right margin
+
+" show vertical & horizontal lines crossing at cursor position
+set cursorline
+set cursorcolumn
+hi CursorLine ctermbg=234
+hi CursorColumn ctermbg=234
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" tab/spacing settings ---------------------------------------------------------
+
+set expandtab           " swap tab with spaces
+set tabstop=2           " how many space a tab char takes
+set shiftwidth=2        " how many spaces are added/removed with shift commands
+set softtabstop=2       " backspace remove as many space a tab width
+set autoindent
+
+autocmd FileType go setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType python setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType java setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" Custom mapping ---------------------------------------------------------------
+
+" switch between buffers
+nmap <C-b>n :bn<CR>
+nmap <C-b>p :bp<CR>
+
+" recenter screen
+nmap <space> zz
+" leave vim
+nmap \\ :q<CR>
+
+"LocalLeader remapping
+" nmap <C-\> <LocalLeader>
+
+" pressing two times <Esc> save current doc
+map <Esc><Esc> :w<CR>
+
+" folding options
+set foldmethod=indent
+set nofoldenable
+set foldnestmax=10
+set foldlevel=1
+
+" use mouse wheel to scroll
+set mouse=a
+map <ScrollWheelUp> <C-Y><C-Y><C-Y>
+map <ScrollWheelDown> <C-E><C-E><C-E>
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" Visual hints -----------------------------------------------------------------
+
+" show unwanted characters: trailing/beginning whitespaces and tabs
+highlight tabs ctermbg=darkgreen guibg=darkgreen
+match tabs /\t/
+
+" show whitespaces at beginning of line
+highlight ws_beg ctermbg=blue guibg=blue
+match ws_beg /^\s\+/
+" autocmd BufWinEnter * match ws_beg /^\s\+/
+" autocmd InsertLeave * match ws_beg /^\s\+/
+" autocmd BufWinLeave * call clearmatches()
+
+" show trailing whitespaces
+highlight ws_end ctermbg=red guibg=red
+match ws_end /\s\+$/
+autocmd BufWinEnter * match ws_end /\s\+$/
+autocmd InsertEnter * match ws_end /\s\+\%#\@<!$/
+autocmd InsertLeave * match ws_end /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" show matching brackets
+set showmatch
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" Version Control commands (courtesy of Curt Sampson) --------------------------
+
+command! Scratch :new | :set buftype=nofile bufhidden=delete
+
+" gvd - diff current file
+map gvd :Scratch<CR>:r!git diff #<CR>:runtime syntax/diff.vim<CR>
+
+" gvD - diff all files from current dir down
+map gvD :Scratch<CR>:r!git diff<CR>:runtime syntax/diff.vim<CR>
+
+" gvb - blame current file
+map gvb :Scratch<CR>:r!git blame #<CR>
+
+" gvl - log current file
+map gvl :Scratch<CR>:r!git log #<CR>
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" GO lang settings -------------------------------------------------------------
+
+" go compiler plugin
+autocmd FileType go compiler go
+
+let g:golang_goroot = "$HOME/lang/go-1.3"
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" OCaml settings ---------------------------------------------------------------
+
+" Merlin: Vim needs to be built with Python scripting support, and must be
+" able to find Merlin's executable on PATH.
+if executable('ocamlmerlin') && has('python')
+  let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
+  execute "set rtp+=".s:ocamlmerlin."/vim"
+  execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+endif
+
+" ocp-indent
+"autocmd FileType ocaml source substitute(system('opam config var share'), '\n$', '', '''') . "/typerex/ocp-indent/ocp-indent.vim"
+
+" ------------------------------------------------------------------------------

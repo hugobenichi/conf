@@ -1,0 +1,9 @@
+[user]
+	email = hugobenichi@gmail.com
+	name = "Hugo Benichi"
+
+[core]
+	editor = vim
+
+# others
+#  set icdiff
