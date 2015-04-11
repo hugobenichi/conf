@@ -2,11 +2,6 @@
 
 set -eux
 
-function err {
-  echo $1
-  exit 1
-}
-
 # ---- variables ---------------------------------------------------------------
 
 APPS=$HOME/Applications
@@ -23,7 +18,7 @@ xcode-select --install || echo "xcode dev tools installed"
 
 mkdir -p $HOME/runtime
 
-ruby --version | grep "ruby 2." || err "no ruby 2+"
+ruby --version | grep "ruby 2." || echo "no ruby 2+" || exit 1
 
 
 # ---- brew --------------------------------------------------------------------
@@ -41,9 +36,16 @@ brew list brew-cask || brew install caskroom/cask/brew-cask
 
 # ---- ruby gems --------------------------------------------------------------
 
-#gem list --local | grep "chef" || sudo gem install chef 
+#gem list --local | grep "chef" || sudo gem install chef
 #gem list --local | grep "kitchenplan" || gem install -i $HOME/.gem/ kitchenplan
 
+
+# ---- vim pathogen ------------------------------------------------------------
+
+[ -e $HOME/.vim/autoload/pathogen.vim ] || {
+  mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle
+  curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+}
 
 # ---- manual install ----------------------------------------------------------
 
@@ -103,6 +105,10 @@ brew list go || {
 
   go get code.google.com/p/go.tools/cmd/godoc
   go get code.google.com/p/go.tools/cmd/vet
+}
+
+[ -e $HOME/.vim/bundle/vim-go ] || {
+  git clone https://github.com/fatih/vim-go.git $HOME/.vim/bundle/vim-go
 }
 
 # --- ocaml --------------------------------------------------------------------
