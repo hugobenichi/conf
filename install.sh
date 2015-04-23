@@ -110,6 +110,11 @@ for t in $gotools; do
   }
 done
 
+[ -e $HOME/Go/bin/gocode ] || {
+  export GOPATH=$HOME/Go
+  go get -u github.com/nsf/gocode
+}
+
 [ -e $HOME/.vim/bundle/vim-go ] || {
   git clone https://github.com/fatih/vim-go.git $HOME/.vim/bundle/vim-go
 }
