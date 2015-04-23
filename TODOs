@@ -7,4 +7,4 @@ add vim plugins for various languages
 
 add R, erlang, python3
 
-set up goimports and other gotool under main go (and link it to PATH)
+add $HOME/Go/bin to PATH

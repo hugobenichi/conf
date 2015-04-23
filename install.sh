@@ -23,14 +23,14 @@ ruby --version | grep "ruby 2." || echo "no ruby 2+" || exit 1
 
 # ---- brew --------------------------------------------------------------------
 
-brewpackages="wget tree rlwrap git opam tmux icdiff httpie ack ctags unrar"
+brewpackages="wget tree rlwrap git opam tmux icdiff httpie ack ctags unrar hg"
 brewdl=https://raw.githubusercontent.com/Homebrew/install/master/install
 
 brew --version || ruby -e "$(curl -fsSL $brewdl)"
 
 for p in $brewpackages; do brew list $p || brew install $p; done
 
-# cask for binary packages
+# cask is an extension for installing binary packages
 brew list brew-cask || brew install caskroom/cask/brew-cask
 
 
@@ -92,20 +92,23 @@ brew list leiningen || {
 
 brew list go || {
   mkdir -p $HOME/Go
-  mkdir -p $HOME/Go/src/github.com/user
 
-  # seems necessary for brew install
-  # todo: add these to bashrcextra
+  # these exports seem necessary for brew install
   export GOPATH=$HOME/Go
   export GOROOT=/usr/local/opt/go/libexec
   export PATH=$PATH:$GOPATH/bin
   export PATH=$PATH:$GOROOT/bin
 
-  brew install hg go
-
-  go get code.google.com/p/go.tools/cmd/godoc
-  go get code.google.com/p/go.tools/cmd/vet
+  brew install go
 }
+
+gotools="godoc goimports cover callgraph oracle"
+for t in $gotools; do
+  [ -e $HOME/Go/bin/$t ] || {
+    export GOPATH=$HOME/Go
+    go get golang.org/x/tools/cmd/$t
+  }
+done
 
 [ -e $HOME/.vim/bundle/vim-go ] || {
   git clone https://github.com/fatih/vim-go.git $HOME/.vim/bundle/vim-go
@@ -137,7 +140,8 @@ brew list go || {
 
 find $HOME/.ocamlinit || opam init
 
-# need to wrap ocaml with rlwrap TODO: this should go into bash extra actually
+# need to wrap ocaml with rlwrap to get line editing and repl history
+# TODO: this should go into bash extra actually
 alias ocaml="rlwrap /usr/local/bin/ocaml"
 
 # ---- racket ------------------------------------------------------------------
