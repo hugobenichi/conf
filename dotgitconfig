@@ -5,5 +5,12 @@
 [core]
 	editor = vim
 
-# others
-#  set icdiff
+[alias]
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+  df = diff --color --color-words --abbrev
+  df2 = diff --color-words=.
+
+  st = status -sb
+  cm = commit
