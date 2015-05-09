@@ -23,7 +23,9 @@ ruby --version | grep "ruby 2." || echo "no ruby 2+" || exit 1
 
 # ---- brew --------------------------------------------------------------------
 
-brewpackages="wget tree rlwrap git opam tmux icdiff httpie ack ctags unrar hg"
+brewpackages="wget tree rlwrap git opam tmux icdiff httpie ack ctags unrar "\
+"hg binutils graphviz"
+
 brewdl=https://raw.githubusercontent.com/Homebrew/install/master/install
 
 brew --version || ruby -e "$(curl -fsSL $brewdl)"
@@ -32,6 +34,12 @@ for p in $brewpackages; do brew list $p || brew install $p; done
 
 # cask is an extension for installing binary packages
 brew list brew-cask || brew install caskroom/cask/brew-cask
+
+
+# ---- wine --------------------------------------------------------------------
+
+brew cask list xquartz || brew install Caskroom/cask/xquartz
+brew list wine || brew install wine
 
 
 # ---- ruby gems --------------------------------------------------------------
