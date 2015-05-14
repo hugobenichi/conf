@@ -10,10 +10,6 @@ BASHEXTRA=./bashrcextra
 
 # ---- first things first ------------------------------------------------------
 
-# install xcode first before anything else
-# set up custom folder structure
-# check ruby version 2
-
 xcode-select --install || echo "xcode dev tools installed"
 
 mkdir -p $HOME/runtime
@@ -71,10 +67,7 @@ command -v vagrant 2>&1 >/dev/null || {
   do
     brew cask list $p || brew cask install $p
   done
-
-  #vagrant box add precise64 http://files.vagrantup.com/precise64.bo
 }
-
 
 # ---- java --------------------------------------------------------------------
 
@@ -157,10 +150,21 @@ find $HOME/.ocamlinit || opam init
 # TODO: this should go into bash extra actually
 alias ocaml="rlwrap /usr/local/bin/ocaml"
 
-# ---- racket ------------------------------------------------------------------
-
 # ---- prolog ------------------------------------------------------------------
 
 brew list gnu-prolog || brew install gnu-prolog
+
+# ---- ntfs setup --------------------------------------------------------------
+
+brew cask list osxfuse || brew install Caskroom/cask/osxfuse
+brew list ntfs-3g || {
+  brew install ntfs-3g
+  sudo mv /sbin/mount_ntfs{,.orig}
+  sudo ln -s /usr/local/Cellar/ntfs-3g/2014.2.15/sbin/mount_ntfs /sbin/mount_ntfs
+
+  # comes from $ brew info osxfuse
+  #sudo /bin/cp -RfX /usr/local/opt/osxfuse/Library/Filesystems/osxfusefs.fs /Library/Filesystems/
+  #sudo chmod +s /Library/Filesystems/osxfusefs.fs/Support/load_osxfusefs
+}
 
 # ------------------------------------------------------------------------------
