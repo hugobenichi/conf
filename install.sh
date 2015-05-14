@@ -22,7 +22,7 @@ ruby --version | grep "ruby 2." || echo "no ruby 2+" || exit 1
 # ---- brew --------------------------------------------------------------------
 
 brewpackages="wget tree rlwrap git opam tmux icdiff httpie ack ctags unrar "\
-"hg binutils graphviz"
+"hg binutils graphviz cmake"
 
 brewdl=https://raw.githubusercontent.com/Homebrew/install/master/install
 
