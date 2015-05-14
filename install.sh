@@ -12,8 +12,6 @@ BASHEXTRA=./bashrcextra
 
 xcode-select --install || echo "xcode dev tools installed"
 
-mkdir -p $HOME/runtime
-
 ruby --version | grep "ruby 2." || echo "no ruby 2+" || exit 1
 
 
