@@ -1,0 +1,3 @@
+# vi:syntax=bash
+
+alias ls='ls -AFh'
