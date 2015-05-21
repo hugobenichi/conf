@@ -14,6 +14,10 @@ xcode-select --install || echo "xcode dev tools installed"
 
 ruby --version | grep "ruby 2." || echo "no ruby 2+" || exit 1
 
+[ -d $HOME/.bashrc.d ] || {
+  mkdir -p $HOME/.bashrc.d
+  cat ./load_bashrc.d.sh >> ~/.profile
+}
 
 # ---- brew --------------------------------------------------------------------
 

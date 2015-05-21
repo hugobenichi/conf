@@ -1,0 +1,4 @@
+# vi:syntax=bash
+
+# Go tools on PATH
+export PATH=$PATH:$HOME/Go/bin
