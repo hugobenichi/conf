@@ -21,7 +21,7 @@ ruby --version | grep "ruby 2." || echo "no ruby 2+" || exit 1
 
 # ---- brew --------------------------------------------------------------------
 
-brewpackages="wget tree rlwrap git opam tmux icdiff httpie ack ctags unrar "\
+brewpackages="wget tree rlwrap git tmux icdiff httpie ack ctags unrar "\
 "hg binutils graphviz cmake"
 
 brewdl=https://raw.githubusercontent.com/Homebrew/install/master/install
@@ -124,33 +124,11 @@ done
 
 # --- ocaml --------------------------------------------------------------------
 
-#OPAM uses ~/.opam by default for its package database, so you need to
-#initialize it first by running (as a normal user):
-#
-#$  opam init
-#
-#Run the following to initialize your environment variables:
-#
-#$  eval `opam config env`
-#
-#To export the needed variables every time, add them to your dotfiles.
-#  * On Bash, add them to `~/.bash_profile`.
-#  * On Zsh, add them to `~/.zprofile` instead.
-#
-#Documentation and tutorials are available at https://opam.ocaml.org, or
-#via 'man opam' and 'opam --help'.
-#
-#Bash completion has been installed to:
-#  /usr/local/etc/bash_completion.d
-#
-#zsh completion has been installed to:
-#  /usr/local/share/zsh/site-function
 
-find $HOME/.ocamlinit || opam init
-
-# need to wrap ocaml with rlwrap to get line editing and repl history
-# TODO: this should go into bash extra actually
-alias ocaml="rlwrap /usr/local/bin/ocaml"
+brew list opam || {
+  brew install opam
+  opam init
+}
 
 # ---- prolog ------------------------------------------------------------------
 

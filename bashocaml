@@ -1,6 +1,10 @@
 # vi:syntax=bash
 
-export CAML_LD_LIBRARY_PATH=$HOME/.opam/system/lib/stublibs:/usr/local/lib/ocaml/stublibs
-export OCAML_TOPLEVEL_PATH=$HOME/.opam/system/lib/toplevel
-export MANPATH=$HOME/.opam/system/man
-export PATH=$PATH:$HOME/.opam/system/bin
+# OPAM configuration from $ opam init (should it be after or before the exports ?)
+. /Users/hugobenichi/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# OPAM env variables config from $ opam init
+eval `opam config env`
+
+# wrap ocaml with rlwrap for line editing and history
+alias ocaml="rlwrap /usr/local/bin/ocaml"
