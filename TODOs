@@ -1,10 +1,5 @@
-set up bashextra with env variables and bash helpers
-find a good story to add bashrcextra
-
 add vim plugins for various languages
   clojure: fireplace, http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
   ocaml: http://stackoverflow.com/questions/15514908/which-is-the-current-setup-to-use-ocaml-in-vim
 
 add R, erlang, python3
-
-add $HOME/Go/bin to PATH
