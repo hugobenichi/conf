@@ -12,12 +12,6 @@ colorscheme darkblue
 " no swap files
 set noswapfile
 
-" ctags settings for java/scala autocompletion
-"set tags=tags;/
-
-" java ctags settings
-autocmd FileType java set tags=.tags
-
 " set search path to current directory at start time
 set path=$PWD/**
 
@@ -28,7 +22,8 @@ set path=$PWD/**
 
 " view settings --------------------------------------------------------
 
-set number          " show line number
+set relativenumber  " show relative line number
+" set number          " show line number
 set ruler           " show column number
 set hlsearch        " highlight search
 set colorcolumn=81  " showing right margin
@@ -151,7 +146,7 @@ map gvl :Scratch<CR>:r!git log #<CR>
 " go compiler plugin
 autocmd FileType go compiler go
 
-let g:golang_goroot = "$HOME/Go/"
+let g:golang_goroot = "$HOME/Go/" " should probably use GOROOT ?
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -176,5 +171,15 @@ endif
 
 " ocp-indent
 "autocmd FileType ocaml source substitute(system('opam config var share'), '\n$', '', '''') . "/typerex/ocp-indent/ocp-indent.vim"
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" Java -------------------------------------------------------------------------
+
+" ctags
+autocmd FileType java set tags=.tags
 
 " ------------------------------------------------------------------------------
