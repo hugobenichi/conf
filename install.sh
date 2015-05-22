@@ -127,7 +127,7 @@ done
 
 brew list opam || {
   brew install opam
-  opam init
+  opam init -a # use non-interactive auto setup.
 }
 
 # ---- prolog ------------------------------------------------------------------
