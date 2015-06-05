@@ -130,6 +130,9 @@ brew list opam || {
   opam init -a # use non-interactive auto setup.
 }
 
+opam install -y core
+opam install -y batteries
+
 # ---- prolog ------------------------------------------------------------------
 
 brew list gnu-prolog || brew install gnu-prolog
