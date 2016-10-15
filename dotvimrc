@@ -12,8 +12,17 @@ colorscheme darkblue
 " no swap files
 set noswapfile
 
+" ctags settings for java/scala autocompletion
+" set tags=tags;/
+
+" java ctags settings
+autocmd FileType java set tags=.tags
+
 " set search path to current directory at start time
 set path=$PWD/**
+
+" allow to keep buffers in the background
+set hidden
 
 " ------------------------------------------------------------------------------
 
@@ -22,8 +31,8 @@ set path=$PWD/**
 
 " view settings --------------------------------------------------------
 
-set relativenumber  " show relative line number
 " set number          " show line number
+set relativenumber  " show relative line number
 set ruler           " show column number
 set hlsearch        " highlight search
 set colorcolumn=81  " showing right margin
@@ -60,14 +69,15 @@ autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab
 
 " Custom mapping ---------------------------------------------------------------
 
+" show buffer list and wait for a buffer number
+nnoremap gb :ls<CR>:b<Space>
+
 " switch between buffers
 nmap <C-b>n :bn<CR>
 nmap <C-b>p :bp<CR>
 
 " recenter screen
 nmap <space> zz
-" leave vim
-nmap \\ :q<CR>
 
 "LocalLeader remapping
 " nmap <C-\> <LocalLeader>
@@ -85,6 +95,16 @@ set foldlevel=1
 set mouse=a
 map <ScrollWheelUp> <C-Y><C-Y><C-Y>
 map <ScrollWheelDown> <C-E><C-E><C-E>
+
+" ------------------------------------------------------------------------------
+
+
+
+
+" Less is more: vim education --------------------------------------------------
+
+" turn off Ex mode
+map Q <Nop>
 
 " ------------------------------------------------------------------------------
 
@@ -171,15 +191,5 @@ endif
 
 " ocp-indent
 "autocmd FileType ocaml source substitute(system('opam config var share'), '\n$', '', '''') . "/typerex/ocp-indent/ocp-indent.vim"
-
-" ------------------------------------------------------------------------------
-
-
-
-
-" Java -------------------------------------------------------------------------
-
-" ctags
-autocmd FileType java set tags=.tags
 
 " ------------------------------------------------------------------------------
