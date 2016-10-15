@@ -12,7 +12,8 @@
   df = diff --color --color-words --abbrev
   df2 = diff --color-words=.
 
-  st = status -sb
+  s = status -sb
   cm = commit
+  cma = commit --amend
 
   aa = add -A
