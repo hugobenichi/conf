@@ -11,6 +11,8 @@ function setup_link {
 
 export -f setup_link
 
+mkdir -p $HOME/.bashrc.d
+
 find ./bash* -type f \
   | sed 's|\./bash||' \
   | awk -v P=$(pwd) -v H=$HOME '{print P"/bash"$1, H"/.bashrc.d/"$1}' \
