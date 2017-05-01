@@ -1,6 +1,6 @@
 " general settings -------------------------------------------------------------
 
-execute pathogen#infect()
+" execute pathogen#infect()
 filetype plugin on
 filetype indent on
 syntax enable
@@ -95,6 +95,13 @@ set foldlevel=1
 set mouse=a
 map <ScrollWheelUp> <C-Y><C-Y><C-Y>
 map <ScrollWheelDown> <C-E><C-E><C-E>
+
+
+" better split tabs navigation
+map <C-H> <C-W><C-H>
+map <C-L> <C-W><C-L>
+map <C-J> <C-W><C-J>
+map <C-K> <C-W><C-K>
 
 " ------------------------------------------------------------------------------
 
