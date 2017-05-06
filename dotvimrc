@@ -110,6 +110,12 @@ noremap L $
 noremap I gg
 noremap K G
 
+" tab navigation
+nnoremap gj gT
+nnoremap gl gt
+nnoremap gJ 1gt
+nnoremap gL 1gtgT
+
 " remap join-lines from 'J', and turn off Ex mode too
 noremap Q J
 
