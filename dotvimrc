@@ -93,21 +93,29 @@ set mouse=a
 map <ScrollWheelUp> <C-Y><C-Y><C-Y>
 map <ScrollWheelDown> <C-E><C-E><C-E>
 
+" normal arrow-like navigation
+noremap j h
+noremap i k
+noremap k j
 
 " better split tabs navigation
-noremap <C-H> <C-W><C-H>
+noremap <C-H> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
-noremap <C-J> <C-W><C-J>
-noremap <C-K> <C-W><C-K>
+noremap <C-J> <C-W><C-H>
+noremap <C-K> <C-W><C-J>
 
 " Whole file navigation
 noremap J 0
 noremap L $
+noremap I gg
 noremap K G
 
-" turn off Ex mode
-map Q <Nop>
+" remap join-lines from 'J', and turn off Ex mode too
+noremap Q J
 
+" remap insert and Insert to 's' just next to 'a'ppend
+nnoremap s i
+nnoremap S I
 
 " ------------------------------------------------------------------------------
 
