@@ -123,6 +123,9 @@ noremap Q J
 nnoremap s i
 nnoremap S I
 
+" TODO:
+"   fix ci? or di? in visual mode
+
 " ------------------------------------------------------------------------------
 
 
