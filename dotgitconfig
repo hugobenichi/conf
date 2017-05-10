@@ -1,15 +1,19 @@
 [user]
-	name = "Hugo Benichi"
+	name = Hugo Benichi
 	email = hugobenichi@gmail.com
 
 [core]
-	editor = vim
+  editor = vim
+
+[color]
+	ui = auto
 
 ;[diff]
 ;  external = $HOME/git_icdiff.sh
 
 [alias]
-  s = status -sb
+  s = status
+  ss = status -sb
   br = branch
   aa = add -A
   cm = commit
@@ -19,14 +23,15 @@
   df = diff
   df2 = diff --color --color-words --abbrev
   df3 = diff --color-words=.
-  topdiff = diff HEAD^
+  topdf = diff HEAD^
   laststat = show --stat HEAD
 
   rebi = rebase -i
   rebc = rebase --continue
-  pickc = cherry-pick --continue
+  crp = cherry-pick
 
   ll = log -n10 --oneline
+  llmore = log --oneline
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
