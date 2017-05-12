@@ -12,9 +12,6 @@ colorscheme darkblue
 " no swap files
 set noswapfile
 
-" ctags settings for java/scala autocompletion
-" set tags=tags;/
-
 " java ctags settings
 autocmd FileType java set tags=.tags
 
@@ -78,6 +75,9 @@ set foldlevel=1
 " show buffer list and wait for a buffer number
 nnoremap gb :ls<CR>:b<Space>
 
+" manually mapping Explore
+cmap :E<CR> :Explore<CR>
+
 " switch between buffers
 nmap <C-b>n :bn<CR>
 nmap <C-b>p :bp<CR>
@@ -85,46 +85,37 @@ nmap <C-b>p :bp<CR>
 " recenter screen
 nmap <space> zz
 
-"LocalLeader remapping
-" nmap <C-\> <LocalLeader>
-
 " use mouse wheel to scroll
 set mouse=a
 map <ScrollWheelUp> <C-Y><C-Y><C-Y>
 map <ScrollWheelDown> <C-E><C-E><C-E>
 
-" normal arrow-like navigation
-noremap j h
-noremap i k
-noremap k j
-
 " better split tabs navigation
-noremap <C-H> <C-W><C-K>
+noremap <C-H> <C-W><C-H>
+noremap <C-J> <C-W><C-J>
+noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
-noremap <C-J> <C-W><C-H>
-noremap <C-K> <C-W><C-J>
 
 " Whole file navigation
-noremap J 0
+noremap H 0
 noremap L $
-noremap I gg
-noremap K G
+noremap K gg
+noremap J G
 
 " tab navigation
-nnoremap gj gT
+nnoremap gh gT
 nnoremap gl gt
-nnoremap gJ 1gt
+nnoremap gH 1gt
 nnoremap gL 1gtgT
 
 " remap join-lines from 'J', and turn off Ex mode too
 noremap Q J
 
-" remap insert and Insert to 's' just next to 'a'ppend
-nnoremap s i
-nnoremap S I
-
-" TODO:
-"   fix ci? or di? in visual mode
+" disable arrow keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 " ------------------------------------------------------------------------------
 
@@ -172,23 +163,5 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
-" ------------------------------------------------------------------------------
-
-
-
-
-" OCaml settings ---------------------------------------------------------------
-
-" Merlin: Vim needs to be built with Python scripting support, and must be
-" able to find Merlin's executable on PATH.
-if executable('ocamlmerlin') && has('python')
-  let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
-  execute "set rtp+=".s:ocamlmerlin."/vim"
-  execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
-endif
-
-" ocp-indent
-"autocmd FileType ocaml source substitute(system('opam config var share'), '\n$', '', '''') . "/typerex/ocp-indent/ocp-indent.vim"
 
 " ------------------------------------------------------------------------------
