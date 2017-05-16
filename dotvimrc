@@ -32,7 +32,7 @@ set hidden
 set relativenumber  " show relative line number
 set ruler           " show column number
 set hlsearch        " highlight search
-set colorcolumn=81  " showing right margin
+" set colorcolumn=81  " showing right margin
 
 " show vertical & horizontal lines crossing at cursor position
 set cursorline
@@ -53,11 +53,14 @@ set shiftwidth=2        " how many spaces are added/removed with shift commands
 set softtabstop=2       " backspace remove as many space a tab width
 set autoindent
 
-autocmd FileType go setlocal ts=2 sts=2 sw=2 noexpandtab
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType python setlocal ts=2 sts=2 sw=2 expandtab
+
 autocmd FileType java setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType java set colorcolumn=101
+
 autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType scala set colorcolumn=101
 
 " folding options
 set foldmethod=indent
@@ -151,10 +154,21 @@ set showmatch
 
 
 
+" C settings --------------------------------------------------------------------
+
+autocmd FileType c setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType c set colorcolumn=
+
+" ------------------------------------------------------------------------------
+
+
+
+
 " GO lang settings -------------------------------------------------------------
 
-" go compiler plugin
 autocmd FileType go compiler go
+autocmd FileType go setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType go set colorcolumn=
 
 let g:golang_goroot = "$HOME/Go/" " should probably use GOROOT ?
 let g:go_fmt_command = "goimports"
