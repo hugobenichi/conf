@@ -93,6 +93,15 @@ set mouse=a
 map <ScrollWheelUp> <C-Y><C-Y><C-Y>
 map <ScrollWheelDown> <C-E><C-E><C-E>
 
+" remap [] to {} for paragraph navigation
+" noremap <C-[> {     this unfortunately collides with C-[ as escape
+noremap <C-]> }
+
+inoremap <C-h> <left>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+inoremap <C-l> <right>
+
 " better split tabs navigation
 noremap <C-H> <C-W><C-H>
 noremap <C-J> <C-W><C-J>
