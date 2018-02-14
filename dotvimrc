@@ -93,9 +93,9 @@ set mouse=a
 map <ScrollWheelUp> <C-Y><C-Y><C-Y>
 map <ScrollWheelDown> <C-E><C-E><C-E>
 
-" remap [] to {} for paragraph navigation
-" noremap <C-[> {     this unfortunately collides with C-[ as escape
-noremap <C-]> }
+" remap {} to ^K and ^J for paragraph navigation
+noremap <C-J> }
+noremap <C-K> {
 
 inoremap <C-h> <left>
 inoremap <C-j> <down>
@@ -104,8 +104,6 @@ inoremap <C-l> <right>
 
 " better split tabs navigation
 noremap <C-H> <C-W><C-H>
-noremap <C-J> <C-W><C-J>
-noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
 
 " Whole file navigation
@@ -188,3 +186,11 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 " ------------------------------------------------------------------------------
+
+
+
+" Macros ---
+
+" ocaml line comments
+" let @o = 'dwA€kb€kb€kb^'
+" let @p = C(* "*€kb *)^'
