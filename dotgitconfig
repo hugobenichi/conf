@@ -23,7 +23,7 @@
   df = diff
   df2 = diff --color --color-words --abbrev
   df3 = diff --color-words=.
-  topdf = diff HEAD^
+  topdf = diff HEAD^ --word-diff
   laststat = show --stat HEAD
 
   rebi = rebase -i
@@ -34,5 +34,6 @@
   llmore = log --oneline
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  lldate = log --pretty=format:"%h%x09%an%x09%ad%x09%s"
 
   mybr = name-rev --name-only HEAD
