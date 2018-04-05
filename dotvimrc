@@ -6,9 +6,6 @@ filetype indent on
 syntax enable
 syntax on
 
-set background=dark
-colorscheme darkblue
-
 " no swap files
 set noswapfile
 
@@ -28,6 +25,7 @@ set hidden
 
 " view settings --------------------------------------------------------
 
+set nowrap
 " set number          " show line number
 set relativenumber  " show relative line number
 set ruler           " show column number
@@ -39,6 +37,11 @@ set cursorline
 set cursorcolumn
 hi CursorLine ctermbg=234
 hi CursorColumn ctermbg=234
+
+set background=dark
+" colorscheme darkblue
+" colorscheme torte
+colorscheme zellner
 
 " ------------------------------------------------------------------------------
 
@@ -61,6 +64,16 @@ autocmd FileType java set colorcolumn=101
 
 autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType scala set colorcolumn=101
+
+autocmd FileType c setlocal ts=8 sts=8 sw=8 noexpandtab
+autocmd FileType c set colorcolumn=81
+
+autocmd FileType go compiler go
+autocmd FileType go setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType go set colorcolumn=
+
+autocmd FileType *.ml setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType *.ml set colorcolumn=45
 
 " folding options
 set foldmethod=indent
@@ -161,21 +174,7 @@ set showmatch
 
 
 
-" C settings --------------------------------------------------------------------
-
-autocmd FileType c setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType c set colorcolumn=
-
-" ------------------------------------------------------------------------------
-
-
-
-
 " GO lang settings -------------------------------------------------------------
-
-autocmd FileType go compiler go
-autocmd FileType go setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType go set colorcolumn=
 
 let g:golang_goroot = "$HOME/Go/" " should probably use GOROOT ?
 let g:go_fmt_command = "goimports"
