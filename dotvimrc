@@ -1,38 +1,27 @@
-" general settings -------------------------------------------------------------
+" ---- FILE SETTINGS ----
 
-" execute pathogen#infect()
 filetype plugin on
 filetype indent on
 syntax enable
 syntax on
 
-set background=dark
-colorscheme darkblue
-
-" no swap files
-set noswapfile
-
 " java ctags settings
 autocmd FileType java set tags=.tags
 
-" set search path to current directory at start time
+" search path
 set path=$PWD/**
 
-" allow to keep buffers in the background
+" buffer settings
 set hidden
-
-" ------------------------------------------------------------------------------
-
+set noswapfile
 
 
+" ---- VIEW SETTINGS ----
 
-" view settings --------------------------------------------------------
-
-" set number          " show line number
+set nowrap
 set relativenumber  " show relative line number
 set ruler           " show column number
 set hlsearch        " highlight search
-" set colorcolumn=81  " showing right margin
 
 " show vertical & horizontal lines crossing at cursor position
 set cursorline
@@ -40,12 +29,39 @@ set cursorcolumn
 hi CursorLine ctermbg=234
 hi CursorColumn ctermbg=234
 
-" ------------------------------------------------------------------------------
+set background=dark
+" colorscheme darkblue
+" colorscheme torte
+colorscheme zellner
+
+" show unwanted characters: trailing/beginning whitespaces and tabs
+highlight tabs ctermbg=darkgreen guibg=darkgreen
+match tabs /\t/
+
+" show whitespaces at beginning of line
+highlight ws_beg ctermbg=blue guibg=blue
+match ws_beg /^\s\+/
+" autocmd BufWinEnter * match ws_beg /^\s\+/
+" autocmd InsertLeave * match ws_beg /^\s\+/
+" autocmd BufWinLeave * call clearmatches()
+
+" show trailing whitespaces
+highlight ws_end ctermbg=red guibg=red
+match ws_end /\s\+$/
+autocmd BufWinEnter * match ws_end /\s\+$/
+autocmd InsertEnter * match ws_end /\s\+\%#\@<!$/
+autocmd InsertLeave * match ws_end /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+set showmatch
 
 
+" ---- TAB/SPACING SETTINGS ----
 
-
-" tab/spacing settings ---------------------------------------------------------
+set foldmethod=indent
+set nofoldenable
+set foldnestmax=10
+set foldlevel=1
 
 set expandtab           " swap tab with spaces
 set tabstop=2           " how many space a tab char takes
@@ -62,18 +78,18 @@ autocmd FileType java set colorcolumn=101
 autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType scala set colorcolumn=101
 
-" folding options
-set foldmethod=indent
-set nofoldenable
-set foldnestmax=10
-set foldlevel=1
+autocmd FileType c setlocal ts=8 sts=8 sw=8 noexpandtab
+autocmd FileType c set colorcolumn=81
 
-" ------------------------------------------------------------------------------
+autocmd FileType go compiler go
+autocmd FileType go setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType go set colorcolumn=
+
+autocmd FileType *.ml setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType *.ml set colorcolumn=45
 
 
-
-
-" Custom mapping ---------------------------------------------------------------
+" ---- CUSTOM MAPPING ----
 
 " show buffer list and wait for a buffer number
 nnoremap gb :ls<CR>:b<Space>
@@ -127,55 +143,8 @@ noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
 
-" ------------------------------------------------------------------------------
 
-
-
-
-" Visual hints -----------------------------------------------------------------
-
-" show unwanted characters: trailing/beginning whitespaces and tabs
-highlight tabs ctermbg=darkgreen guibg=darkgreen
-match tabs /\t/
-
-" show whitespaces at beginning of line
-highlight ws_beg ctermbg=blue guibg=blue
-match ws_beg /^\s\+/
-" autocmd BufWinEnter * match ws_beg /^\s\+/
-" autocmd InsertLeave * match ws_beg /^\s\+/
-" autocmd BufWinLeave * call clearmatches()
-
-" show trailing whitespaces
-highlight ws_end ctermbg=red guibg=red
-match ws_end /\s\+$/
-autocmd BufWinEnter * match ws_end /\s\+$/
-autocmd InsertEnter * match ws_end /\s\+\%#\@<!$/
-autocmd InsertLeave * match ws_end /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
-" show matching brackets
-set showmatch
-
-" ------------------------------------------------------------------------------
-
-
-
-
-" C settings --------------------------------------------------------------------
-
-autocmd FileType c setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType c set colorcolumn=
-
-" ------------------------------------------------------------------------------
-
-
-
-
-" GO lang settings -------------------------------------------------------------
-
-autocmd FileType go compiler go
-autocmd FileType go setlocal ts=2 sts=2 sw=2 noexpandtab
-autocmd FileType go set colorcolumn=
+" ---- go LANG SETTINGS ----
 
 let g:golang_goroot = "$HOME/Go/" " should probably use GOROOT ?
 let g:go_fmt_command = "goimports"
@@ -185,13 +154,9 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" ------------------------------------------------------------------------------
 
+" ---- OCAML MACROS ----
 
-
-" Macros ---
-
-" ocaml line comments
 " let @o = 'dwA€kb€kb€kb^'
 " let @p = C(* "*€kb *)^'
 
