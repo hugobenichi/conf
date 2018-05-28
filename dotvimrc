@@ -194,3 +194,16 @@ let g:go_highlight_build_constraints = 1
 " ocaml line comments
 " let @o = 'dwA€kb€kb€kb^'
 " let @p = C(* "*€kb *)^'
+
+
+
+" OCaml
+
+
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+execute "helptags " . g:opamshare . "/merlin/vim/doc"
+
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
