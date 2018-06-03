@@ -37,3 +37,7 @@
   lldate = log --pretty=format:"%h%x09%an%x09%ad%x09%s"
 
   mybr = name-rev --name-only HEAD
+
+  rom = rebase origin master
+  pom = push origin master
+  fta = fetch -a
