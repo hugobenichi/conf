@@ -1,4 +1,4 @@
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " ---- FILE SETTINGS ----
 
@@ -20,6 +20,7 @@ set noswapfile
 
 " ---- VIEW SETTINGS ----
 
+set exrc            " per-project vim conf file allowed
 set nowrap
 set relativenumber  " show relative line number
 set ruler           " show column number
@@ -32,9 +33,7 @@ hi CursorLine ctermbg=234
 hi CursorColumn ctermbg=234
 
 set background=dark
-" colorscheme darkblue
-" colorscheme torte
-colorscheme zellner
+colorscheme torte
 
 " show unwanted characters: trailing/beginning whitespaces and tabs
 highlight tabs ctermbg=darkgreen guibg=darkgreen
@@ -168,9 +167,18 @@ let g:go_highlight_build_constraints = 1
 
 
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
-execute "helptags " . g:opamshare . "/merlin/vim/doc"
+" execute "helptags " . g:opamshare . "/merlin/vim/doc"
 
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menuone
+
+
+
+
+
+
+
+
+set secure " always keep this at the end when exrc is set
